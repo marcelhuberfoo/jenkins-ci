@@ -3,6 +3,8 @@
 . /etc/rc.d/functions
 
 DAEMON=jenkins
+ARGS=
+RUN_USER=jenkins
 
 [ -r /etc/conf.d/$DAEMON ] && . /etc/conf.d/$DAEMON
 PIDFILE="/var/run/daemons/$DAEMON.pid"
@@ -13,8 +15,10 @@ echo $ARGS
 case "$1" in
  start)
    stat_busy "Starting $DAEMON"
-   if [ -z "$PID" ]; then 
-     sudo -u jenkins nohup java -jar /usr/share/java/jenkins/jenkins.war --httpPort=8090 --ajp13Port=-1 > /var/log/jenkins.log < /dev/null &
+   if [ -z "$PID" ]; then
+     mkdir `dirname $PIDFILE` > /dev/null 2>&1 || true
+     chown $RUN_USER `dirname $PIDFILE`
+     sudo -u $RUN_USER nohup java -jar /usr/share/java/jenkins/jenkins.war --httpPort=8090 --ajp13Port=-1 > /var/log/jenkins.log < /dev/null &
      echo $! > $PIDFILE
    fi
 
@@ -47,3 +51,5 @@ case "$1" in
    echo "usage: $0 {start|stop|restart}"  
 esac
 
+# End of file
+# vim: set ts=2 sw=2 noet:
