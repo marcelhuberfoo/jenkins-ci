@@ -28,7 +28,7 @@ noextract=(jenkins.war)
 
 md5sums=('a859f7340fa85edd18f7837d92b987a8'
          '689654a7022f5fa6bc586f9c2c3bf1bb'
-         '7892399de89e709e915ae5043e6d2511'
+         'e10471efdd856b8cc9f74338b9412601'
          'ffa9e73e5382d4d16971dca7a2023868')
 
 package() {
