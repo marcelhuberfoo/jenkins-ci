@@ -1,16 +1,13 @@
 #!/bin/sh
-# $Id$
 # vim:set ts=2 sw=2 et:
 
 # arg 1:  the new package version
 pre_install() {
- /bin/true
+  /bin/true
 }
 
 # arg 1:  the new package version
 post_install() {
-  #ln -s /opt/jenkins/bin/jenkins /etc/rc.d/jenkins
-  
   echo ">>> Creating user and group and setting permissions..."
   getent passwd jenkins > /dev/null || /usr/sbin/useradd --user-group --home-dir "/var/lib/jenkins/" --shell "/bin/bash" jenkins &> /dev/null
   
@@ -21,13 +18,12 @@ post_install() {
 # arg 1:  the new package version
 # arg 2:  the old package version
 pre_upgrade() {
- /bin/true
+  /bin/true
 }
 
 # arg 1:  the new package version
 # arg 2:  the old package version
 post_upgrade() {
-  cd /opt/jenkins
   chown jenkins:jenkins /var/lib/jenkins
 }
 
@@ -41,8 +37,8 @@ post_remove() {
 
   getent passwd jenkins > /dev/null && /usr/sbin/userdel jenkins &>/dev/null
 
-        if [ -h /etc/rc.d/jenkins ] ; then
-            rm /etc/rc.d/jenkins
-        fi  
+  if [ -h /etc/rc.d/jenkins ] ; then
+    rm /etc/rc.d/jenkins
+  fi  
 }
 
