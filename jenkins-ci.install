@@ -40,5 +40,8 @@ post_remove() {
   if [ -h /etc/rc.d/jenkins ] ; then
     rm /etc/rc.d/jenkins
   fi  
+  if [ -d /var/lib/jenkins ]; then
+    echo ">>> directory /var/lib/jenkins needs to be removed manually"
+  fi
 }
 
