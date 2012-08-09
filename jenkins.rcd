@@ -4,10 +4,8 @@ daemon_name=jenkins
 
 . /etc/rc.conf
 . /etc/rc.d/functions
-. /etc/conf.d/${daemon_name}.conf
+. /etc/conf.d/${daemon_name}
 
-appstarter="`. /etc/profile ; echo $JAVA_HOME/bin/java`"
-apparchive=/usr/share/java/jenkins/jenkins.war
 pidfile=/var/run/${daemon_name}.pid 
 logfile=/var/log/${daemon_name}.log
 
@@ -47,7 +45,7 @@ case "$1" in
 	exit 1
       fi
       # RUN
-      sudo -u $JENKINS_USER -i -- nohup $appstarter -jar ${apparchive} ${JENKINS_ARGS} > ${logfile} </dev/null &
+      sudo -u $JENKINS_USER -i -- nohup ${JAVA} ${JAVA_ARGS} -jar ${JENKINS_WAR} ${JENKINS_ARGS} > ${logfile} </dev/null &
       returncode=$?
       pid=$!
       #

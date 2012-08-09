@@ -10,9 +10,9 @@ pre_install() {
 post_install() {
   echo ">>> Creating user and group and setting permissions..."
   getent passwd jenkins > /dev/null || /usr/sbin/useradd --user-group --home-dir "/var/lib/jenkins/" --shell "/bin/bash" jenkins &> /dev/null
-  
   chown jenkins:jenkins /var/lib/jenkins
-
+  chown -R jenkins:jenkins /var/cache/jenkins
+  chown -R jenkins:jenkins /var/log/jenkins
 }
 
 # arg 1:  the new package version
@@ -25,6 +25,8 @@ pre_upgrade() {
 # arg 2:  the old package version
 post_upgrade() {
   chown jenkins:jenkins /var/lib/jenkins
+  chown -R jenkins:jenkins /var/cache/jenkins
+  chown -R jenkins:jenkins /var/log/jenkins
 }
 
 # arg 1:  the old package version
@@ -34,12 +36,10 @@ pre_remove() {
 
 # arg 1:  the old package version
 post_remove() {
-
   getent passwd jenkins > /dev/null && /usr/sbin/userdel jenkins &>/dev/null
-
-  if [ -h /etc/rc.d/jenkins ] ; then
-    rm /etc/rc.d/jenkins
-  fi  
+  for d in "/var/cache/jenkins" "/var/log/jenkins"; do
+    [ -d "${d}" ] && rm -rf "${d}"
+  done
   if [ -d /var/lib/jenkins ]; then
     echo ">>> directory /var/lib/jenkins needs to be removed manually"
   fi
