@@ -20,7 +20,7 @@ replaces=(jenkins)
 backup=(etc/conf.d/jenkins etc/logrotate.d/jenkins)
 options=()
 install=jenkins-ci.install
-changelog=
+changelog=changelog
 source=(http://mirrors.jenkins-ci.org/war/latest/jenkins.war
         jenkins.conf
         jenkins.rcd
