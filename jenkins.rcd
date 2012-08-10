@@ -7,7 +7,6 @@ daemon_name=jenkins
 . /etc/conf.d/${daemon_name}
 
 pidfile=/var/run/${daemon_name}.pid 
-logfile=/var/log/${daemon_name}.log
 
 get_pid() {
   echo "`cat $pidfile 2>/dev/null`"
@@ -45,7 +44,7 @@ case "$1" in
 	exit 1
       fi
       # RUN
-      sudo -u $JENKINS_USER -i -- nohup ${JAVA} ${JAVA_ARGS} -jar ${JENKINS_WAR} ${JENKINS_ARGS} > ${logfile} </dev/null &
+      sudo -u $JENKINS_USER -i -- nohup ${JAVA} ${JAVA_ARGS} -jar ${JENKINS_WAR} ${JENKINS_ARGS} >> ${JENKINS_LOG} 2>&1 </dev/null &
       returncode=$?
       pid=$!
       #

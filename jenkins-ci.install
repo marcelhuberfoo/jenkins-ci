@@ -6,13 +6,18 @@ pre_install() {
   /bin/true
 }
 
+_set_dir_permissions() {
+  echo ">>> Setting directory permissions..."
+  for d in /var/log/jenkins /var/lib/jenkins /var/cache/jenkins; do
+    chown -R jenkins:jenkins ${d}
+  done
+}
+
 # arg 1:  the new package version
 post_install() {
-  echo ">>> Creating user and group and setting permissions..."
+  echo ">>> Creating jenkins user and group..."
   getent passwd jenkins > /dev/null || /usr/sbin/useradd --user-group --home-dir "/var/lib/jenkins/" --shell "/bin/bash" jenkins &> /dev/null
-  chown jenkins:jenkins /var/lib/jenkins
-  chown -R jenkins:jenkins /var/cache/jenkins
-  chown -R jenkins:jenkins /var/log/jenkins
+  _set_dir_permissions
 }
 
 # arg 1:  the new package version
@@ -24,9 +29,7 @@ pre_upgrade() {
 # arg 1:  the new package version
 # arg 2:  the old package version
 post_upgrade() {
-  chown jenkins:jenkins /var/lib/jenkins
-  chown -R jenkins:jenkins /var/cache/jenkins
-  chown -R jenkins:jenkins /var/log/jenkins
+  _set_dir_permissions
 }
 
 # arg 1:  the old package version
