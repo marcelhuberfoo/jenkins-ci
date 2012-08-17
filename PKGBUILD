@@ -3,7 +3,7 @@
 
 pkgname=jenkins-ci
 pkgver=1.477
-pkgrel=1
+pkgrel=2
 epoch=
 pkgdesc="An extendable open source continuous integration server"
 arch=(any)
@@ -27,7 +27,7 @@ source=(http://mirrors.jenkins-ci.org/war/$pkgver/jenkins.war
         jenkins.systemd
         logrotate)
 noextract=(jenkins.war)
-sha256sums=("3330beb7fef7f1bd9509a66bf9d0da90b68ded08cf1f2b9e306e7790d035d505" "c29fe63229ee3c5a5bef31e2d70f715480bb360a14e78c1f9d464fab10375646" "d026a85b90d7b9d1ab4b7c512fe0e373db73ad5ef86f399631dc323eddae3ddc" "cb6d39c7b9fd23c2176cf81eb1eda0cae7a2a36e9c031b0748a26ad4bf1a46e2" "2a43bf75c47dd237c510bb02ce2257cc0b75b072850cc89c0436a5039dabde96")
+sha256sums=("3330beb7fef7f1bd9509a66bf9d0da90b68ded08cf1f2b9e306e7790d035d505" "d5c628861778745e0625b335ef9022b6d3d12ad72f8aa7911045ddc76c54e299" "508b6b938b41f160d585d50b013fe3e445fdf1d540108e14cad9f1d32d209bfd" "026ef46b36ba2752ae39d99f579dbf181ae4db8fd2de0798d4dc55dd19281b38" "2a43bf75c47dd237c510bb02ce2257cc0b75b072850cc89c0436a5039dabde96")
 package() {
   install -D -m 444 "$srcdir/jenkins.war" "$pkgdir/usr/share/java/jenkins/jenkins.war"
   install -D -m 755 "$srcdir/jenkins.rcd" "$pkgdir/etc/rc.d/jenkins"
