@@ -2,8 +2,8 @@
 # Contributor: Illarion Kovalchuk <illarion.kovalchuk at gmail dot com>
 
 pkgname=jenkins-ci
-pkgver=1.477
-pkgrel=2
+pkgver=1.478
+pkgrel=1
 epoch=
 pkgdesc="An extendable open source continuous integration server"
 arch=(any)
