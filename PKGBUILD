@@ -27,7 +27,7 @@ source=(http://mirrors.jenkins-ci.org/war/$pkgver/jenkins.war
         jenkins.systemd
         logrotate)
 noextract=(jenkins.war)
-sha256sums=("3330beb7fef7f1bd9509a66bf9d0da90b68ded08cf1f2b9e306e7790d035d505" "d5c628861778745e0625b335ef9022b6d3d12ad72f8aa7911045ddc76c54e299" "508b6b938b41f160d585d50b013fe3e445fdf1d540108e14cad9f1d32d209bfd" "026ef46b36ba2752ae39d99f579dbf181ae4db8fd2de0798d4dc55dd19281b38" "2a43bf75c47dd237c510bb02ce2257cc0b75b072850cc89c0436a5039dabde96")
+sha256sums=("6b399691ecece357116e344ed181f20ec337d062a37c044146eab91284741945" "d5c628861778745e0625b335ef9022b6d3d12ad72f8aa7911045ddc76c54e299" "508b6b938b41f160d585d50b013fe3e445fdf1d540108e14cad9f1d32d209bfd" "026ef46b36ba2752ae39d99f579dbf181ae4db8fd2de0798d4dc55dd19281b38" "2a43bf75c47dd237c510bb02ce2257cc0b75b072850cc89c0436a5039dabde96")
 package() {
   install -D -m 444 "$srcdir/jenkins.war" "$pkgdir/usr/share/java/jenkins/jenkins.war"
   install -D -m 755 "$srcdir/jenkins.rcd" "$pkgdir/etc/rc.d/jenkins"
