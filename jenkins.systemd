@@ -10,6 +10,7 @@ StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=jenkins
 ExecStart=@/usr/bin/java jenkins $JAVA_ARGS -jar $JENKINS_WAR $JENKINS_WEBROOT $JENKINS_PORT $JENKINS_AJPPORT
+LimitDATA=536870912
 
 [Install]
 WantedBy=multi-user.target
