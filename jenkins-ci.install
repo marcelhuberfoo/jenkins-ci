@@ -39,7 +39,9 @@ _start_systemd_service() {
 }
 
 _disable_systemd_service() {
-  /usr/bin/systemctl disable ${_service_name} 2>/dev/null
+  if [ -n "$(_is_systemd_service_enabled)" ]; then
+    /usr/bin/systemctl disable ${_service_name} 2>/dev/null
+  fi
 }
 
 _enable_systemd_service() {
@@ -71,7 +73,7 @@ pre_install() {
 
 # arg 1:  the new package version
 post_install() {
-  getent passwd $_service_username > /dev/null || /usr/sbin/useradd --user-group --home-dir "${_service_install_dir}" --shell "/bin/bash" $_service_username &> /dev/null
+  getent passwd ${_service_username} > /dev/null || /usr/sbin/useradd --user-group --home-dir "${_service_install_dir}" --shell "/bin/bash" ${_service_username} &> /dev/null
   _set_dir_permissions
   _install_systemd_service
   _start_systemd_service
@@ -81,6 +83,7 @@ post_install() {
 # arg 2:  the old package version
 pre_upgrade() {
   _stop_systemd_service
+  _disable_systemd_service
 }
 
 # arg 1:  the new package version
