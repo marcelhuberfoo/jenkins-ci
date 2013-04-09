@@ -1,0 +1,8 @@
+# edit files...
+touch changelog
+makepkg -f --holdver --skipinteg --nobuild
+updpkgsums
+namcap -i PKGBUILD
+makepkg -f --holdver
+namcap -i jenkins-ci-*-any.pkg.tar.xz
+
