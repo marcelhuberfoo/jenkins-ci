@@ -1,5 +1,5 @@
 [Unit]
-Description=An extendable open source continuous integration server
+Description=Extendable continuous integration server
 After=network.target
 
 [Service]
