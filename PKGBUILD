@@ -16,7 +16,7 @@ replaces=('jenkins')
 backup=('etc/conf.d/jenkins')
 install=jenkins-ci.install
 noextract=('jenkins.war')
-source=("http://mirrors.jenkins-ci.org/war/latest/jenkins.war"
+source=("http://mirrors.jenkins-ci.org/war/${pkgver}/jenkins.war"
         'jenkins.conf'
         'jenkins.service'
         'jenkins.tmpfiles.d'
