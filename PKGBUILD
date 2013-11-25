@@ -4,7 +4,7 @@
 
 pkgname=jenkins-ci-latest
 pkgver=1.541
-pkgrel=1
+pkgrel=2
 pkgdesc='Extendable continuous integration server (latest and greatest)'
 arch=('any')
 url='http://jenkins-ci.org/'
